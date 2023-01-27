@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.CheckoutPage"
+             xmlns:vm="clr-namespace:Mobile.ViewModels"
+             xmlns:local="clr-namespace:Mobile.ViewModels"  
+             xmlns:model="clr-namespace:Mobile.Models"  
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:CheckoutViewModel  />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <Label Text="{Binding TotalPrice}" 
+                LineBreakMode="NoWrap" 
+                HorizontalOptions="Center"
+                Style="{DynamicResource ListItemTextStyle}" 
+                Margin="0,20,0,0"
+                FontSize="20" />
+
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:Phone">
+                            <StackLayout Margin="10"
+                                        Orientation="Horizontal" HorizontalOptions="Fill">
+                                <Image Source="{Binding ImageSrc}" VerticalOptions="Start" HeightRequest="100" />
+                            <StackLayout Margin="10" HorizontalOptions="Fill">
+                                <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                    <Label Text="Name : " 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                    <Label Text="{Binding Name}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                    <Label Text="Brand : " 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                    <Label Text="{Binding Brand}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                </StackLayout>
+                                <StackLayout
+                                        Orientation="Horizontal">
+                                    <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                        <Label Text="Binding : " 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                        <Label Text="{Binding PriceSrc}" 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                        <Label Text="Count : " 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                        <Label Text="{Binding CartCount}" 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:CheckoutViewModel}}, Path=ItemTapped}"		
+                                    CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Buy"
+                Command="{Binding BuyCommand}"
+                BackgroundColor="{StaticResource Primary}"
+                HorizontalOptions="Center"
+                Margin="0,0,0,20"
+                TextColor="White" />
+
+    </StackLayout>
+
+</ContentPage>

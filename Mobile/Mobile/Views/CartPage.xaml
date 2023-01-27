@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.CartPage"
+             xmlns:vm="clr-namespace:Mobile.ViewModels"
+             xmlns:local="clr-namespace:Mobile.ViewModels"  
+             xmlns:model="clr-namespace:Mobile.Models"  
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:CartViewModel  />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <RelativeLayout>
+
+        <RefreshView x:DataType="local:CartViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="10" x:DataType="model:Phone">
+                                    <StackLayout Margin="10"
+                                        Orientation="Horizontal" HorizontalOptions="Fill">
+                                        <Image Source="{Binding ImageSrc}" VerticalOptions="Start" HeightRequest="100" />
+                                        <StackLayout Margin="10" HorizontalOptions="Fill">
+                                        <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                        <Label Text="Name : " 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                        <Label Text="{Binding Name}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                        <Label Text="Brand : " 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                        <Label Text="{Binding Brand}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="16" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        Orientation="Horizontal">
+                                        <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                            <Label Text="Binding : " 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                            <Label Text="{Binding PriceSrc}" 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                                            <Label Text="Count : " 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                            <Label Text="{Binding CartCount}" 
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Image Source="icon_bin.png" VerticalOptions="Center" 
+                                    Margin="0,0,0,0" 
+                                    HeightRequest="30" HorizontalOptions="EndAndExpand">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            NumberOfTapsRequired="1"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=ItemRemoved}"		
+                                            CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=ItemTapped}"		
+                                    CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+        </RefreshView>
+
+        <Button Margin=".95,.95,80,80" Text="{Binding TotalPrice}"
+            Command="{Binding BuyCommand}"
+            BackgroundColor="{StaticResource Primary}"
+            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-120}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-60}"
+            TextColor="White" />
+
+    </RelativeLayout>
+    
+</ContentPage>

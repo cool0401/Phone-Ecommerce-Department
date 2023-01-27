@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:mtrl="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             x:Class="Mobile.Views.EditMyAccountPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New Contact">
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Name" FontSize="Medium" />
+            <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="Medium">
+                <Entry.Behaviors>
+                    <behaviorPack:MaxLengthValidationBehavior  MaxLength="20"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="Email" FontSize="Medium" />
+            <Entry Text="{Binding Email, Mode=TwoWay}" FontSize="Medium" Margin="0" >
+                <Entry.Behaviors>
+                    <behaviorPack:EmailValidationBehavior/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text="Phone" FontSize="Medium" />
+            <Entry Text="{Binding Phone, Mode=TwoWay}" FontSize="Medium" Margin="0">
+                <Entry.Behaviors>
+                    <behaviorPack:NumberValidationBehavior />
+                    <behaviorPack:MaskedBehavior Mask="(XXX)-XXX-XXXX" />
+                </Entry.Behaviors>
+            </Entry>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

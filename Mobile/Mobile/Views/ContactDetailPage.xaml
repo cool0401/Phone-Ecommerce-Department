@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.ContactDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Name:" FontSize="Medium" />
+        <Label Text="{Binding Name}" FontSize="Small"/>
+        <Label Text="Email:" FontSize="Medium" />
+        <Label Text="{Binding Email}" FontSize="Small"/>
+        <Label Text="Phone Number:" FontSize="Medium" />
+        <Label Text="{Binding PhoneN}" FontSize="Small"/>
+        <Label Text="Address:" FontSize="Medium" />
+        <Label Text="{Binding Address}" FontSize="Small"/>
+        <Label Text="City:" FontSize="Medium" />
+        <Label Text="{Binding City}" FontSize="Small"/>
+    </StackLayout>
+
+</ContentPage>

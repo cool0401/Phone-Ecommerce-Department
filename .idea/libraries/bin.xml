@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="bin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Mobile/Mobile.Android/obj/Debug/130/android/bin/classes.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Mobile/Mobile.Android/obj/Debug/130/android/bin/mono.android.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

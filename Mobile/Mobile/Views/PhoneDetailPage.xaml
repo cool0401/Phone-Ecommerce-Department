@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.PhoneDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Image Source="{Binding Image}" VerticalOptions="Center" HeightRequest="300" />
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+            <Label Text="Name:" FontSize="Medium" />
+            <Label Text="{Binding Name}" FontSize="Medium"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+            <Label Text="Brand:" FontSize="Medium" />
+            <Label Text="{Binding Brand}" FontSize="Medium"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+            <Label Text="Price:" FontSize="Medium" />
+            <Label Text="{Binding Price}" FontSize="Medium"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
